@@ -26,7 +26,7 @@ urlpatterns = [
     path('auth/', include('djoser.urls.authtoken')),
 ]
 
-from custom_protected.views import userinfo
+from custom_protected_resource.views import userinfo
 
 urlpatterns += [
     path('userinfo/', userinfo, name='userinfo'),

@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',  # 例如 Google 作为 OIDC 提供者
-    'custom_protected'
+    'custom_protected_resource'
 ]
 
 SITE_ID = 1
