@@ -1,0 +1,22 @@
+# Core Django
+Django==5.2.4
+
+# Environment management
+django-environ==0.12.0
+
+# OAuth2 and OpenID Connect
+django-oauth-toolkit==3.0.1
+
+# REST Framework
+djangorestframework==3.16.0
+djangorestframework-simplejwt==5.5.1
+
+# Authentication
+djoser==2.3.3
+dj-rest-auth==7.0.1
+django-allauth==65.10.0
+
+# Testing and profiling
+memory-profiler==0.61.0
+websockets==15.0.1
+psutil==7.0.0
