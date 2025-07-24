@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import environ
 from datetime import timedelta
 
-# 初始化
+# Note: django-environ was removed as it was not being used
+# If you need environment variable support in the future, uncomment the following:
+# import environ
 # env = environ.Env(
 #     # 设置默认值和转换类型
 #     DEBUG=(bool, False)
@@ -37,7 +38,7 @@ SECRET_KEY = 'django-insecure-v4yz(!-i=8r@hww*w4rcjfy_54t4wu8c%nu72e017t=!=zz29!
 # SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver', '0.0.0.0']
 
 
 # Application definition
