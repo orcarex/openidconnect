@@ -22,25 +22,27 @@ Successfully updated all dependencies in the Django OpenID Connect project to th
 - **websockets**: Updated to 15.0.1
 - **psutil**: Updated to 7.0.0
 
-## Removed Dependencies
-- **django-environ**: Removed as it was imported but not actually used in the codebase
-  - The import was commented out in settings.py
-  - No functionality was lost by removing this dependency
+## Environment Management
+- **django-environ**: Re-added and properly configured for environment variable management
+  - Now actively used for managing SECRET_KEY, DEBUG, ALLOWED_HOSTS, and DATABASE_URL
+  - Provides better security and configuration flexibility
+  - Added .env.example file for reference
 
 ## Configuration Changes
 
 ### Settings Updates
-1. **ALLOWED_HOSTS**: Updated to include test server hosts for proper testing
+1. **Environment Variables**: Now properly configured with django-environ
    ```python
-   ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver', '0.0.0.0']
+   # Environment variables with defaults
+   SECRET_KEY = env('SECRET_KEY')
+   DEBUG = env('DEBUG')
+   ALLOWED_HOSTS = env('ALLOWED_HOSTS')
+   DATABASES = {'default': env.db()}
    ```
 
-2. **django-environ removal**: Cleaned up unused import and added documentation comment
-   ```python
-   # Note: django-environ was removed as it was not being used
-   # If you need environment variable support in the future, uncomment the following:
-   # import environ
-   ```
+2. **Configuration Files**: Added .env and .env.example files
+   - `.env`: Contains actual environment variables (not in version control)
+   - `.env.example`: Template file showing required environment variables
 
 ### File Renames
 - `test_client.py` → `websocket_client_example.py`

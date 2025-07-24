@@ -12,16 +12,23 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import environ
 
-# Note: django-environ was removed as it was not being used
-# If you need environment variable support in the future, uncomment the following:
-# import environ
-# env = environ.Env(
-#     # 设置默认值和转换类型
-#     DEBUG=(bool, False)
-# )
-# # 从 .env 文件读取环境变量
-# environ.Env.read_env()
+# Initialize environment variables
+env = environ.Env(
+    # Set default values and type casting
+    DEBUG=(bool, True),
+    SECRET_KEY=(str, 'django-insecure-change-me-in-production'),
+    ALLOWED_HOSTS=(list, ['localhost', '127.0.0.1', '0.0.0.0']),
+    DATABASE_URL=(str, 'sqlite:///db.sqlite3'),
+    SECURE_SSL_REDIRECT=(bool, False),
+    SECURE_HSTS_SECONDS=(int, 0),
+    SESSION_COOKIE_SECURE=(bool, False),
+    CSRF_COOKIE_SECURE=(bool, False),
+)
+
+# Read .env file
+environ.Env.read_env()
 
 
 
@@ -33,12 +40,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v4yz(!-i=8r@hww*w4rcjfy_54t4wu8c%nu72e017t=!=zz29!'
-# 从环境变量中获取 SECRET_KEY 和 DEBUG
-# SECRET_KEY = env('SECRET_KEY')
-DEBUG = True
+# Get SECRET_KEY and DEBUG from environment variables
+SECRET_KEY = env('SECRET_KEY')
+DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver', '0.0.0.0']
+ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -101,10 +107,7 @@ WSGI_APPLICATION = 'odic.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': env.db()
 }
 
 
