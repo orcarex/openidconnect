@@ -68,6 +68,31 @@ A Django-based OpenID Connect (OIDC) and OAuth2 provider implementation with com
 
 The application will be available at `http://localhost:8000`
 
+### OAuth2 Application Setup
+
+To use the OAuth2 functionality, you need to create an OAuth2 application:
+
+1. **Access Django Admin**
+   ```bash
+   # Create superuser if not already done
+   python manage.py createsuperuser
+   ```
+
+2. **Create OAuth2 Application**
+   - Go to `http://localhost:8000/admin/`
+   - Navigate to "OAuth2 Provider" → "Applications"
+   - Click "Add Application"
+   - Set:
+     - **Name**: Your app name
+     - **Client type**: Confidential
+     - **Authorization grant type**: Authorization code
+     - **Redirect URIs**: Your callback URL (e.g., `http://localhost:3000/callback`)
+
+3. **Note your credentials**
+   - **Client ID**: Will be generated automatically
+   - **Client Secret**: Will be generated automatically
+   - Use these in your OAuth2 flow
+
 ## Environment Configuration
 
 The project uses environment variables for configuration. Copy `.env.example` to `.env` and customize:
