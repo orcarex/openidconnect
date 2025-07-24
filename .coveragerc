@@ -1,0 +1,44 @@
+[run]
+source = .
+omit = 
+    */venv/*
+    */env/*
+    */migrations/*
+    */tests/*
+    */test_*.py
+    manage.py
+    */settings/*
+    */wsgi.py
+    */asgi.py
+    */urls.py
+    */admin.py
+    */apps.py
+    */conftest.py
+    */node_modules/*
+    */static/*
+    */media/*
+    */locale/*
+    */fixtures/*
+    */templates/*
+    run_tests.py
+    websocket_*.py
+    test_memory_usage.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    if self.debug:
+    if settings.DEBUG
+    raise AssertionError
+    raise NotImplementedError
+    if 0:
+    if __name__ == .__main__.:
+    class .*\bProtocol\):
+    @(abc\.)?abstractmethod
+
+[html]
+directory = htmlcov
+
+[xml]
+output = coverage.xml
